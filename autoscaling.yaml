@@ -1,0 +1,89 @@
+heat_template_version: 2015-10-15
+
+description: >
+  Example of using monasca resources for auto-scale testing. In this template,
+  sample scale-group is created with given nova instance to auto-scale
+  when cpu utilization varies between 15 to 50 percent for 3 times consequently.
+parameters:
+  flavor:
+    type: string
+    description: Flavor for the instances to be created
+    default: m1.nano
+  image:
+    type: string
+    description: Name or ID of the image to use for the instances.
+
+resources:
+  group:
+    type: OS::Heat::AutoScalingGroup
+    properties:
+      cooldown: 60
+      desired_capacity: 2
+      max_size: 5
+      min_size: 1
+      resource:
+        type: OS::Nova::Server
+        properties:
+          flavor: { get_param: flavor }
+          image: { get_param: image }
+          metadata: {"scale_group": {get_param: "OS::stack_id"}}
+          networks:
+          - network: private
+          security_groups:
+          - testvm
+
+  scale_up_policy:
+    type: OS::Heat::ScalingPolicy
+    properties:
+      adjustment_type: change_in_capacity
+      auto_scaling_group_id: { get_resource: group }
+      cooldown: 60
+      scaling_adjustment: 1
+
+  scale_down_policy:
+    type: OS::Heat::ScalingPolicy
+    properties:
+      adjustment_type: change_in_capacity
+      auto_scaling_group_id: { get_resource: group }
+      cooldown: 60
+      scaling_adjustment: -1
+
+  up_notification:
+    type: OS::Monasca::Notification
+    properties:
+      type: webhook
+      address: {get_attr: [scale_up_policy, alarm_url]}
+
+  down_notification:
+    type: OS::Monasca::Notification
+    properties:
+      type: webhook
+      address: {get_attr: [scale_down_policy, alarm_url]}
+
+  cpu_alarm_high:
+    type: OS::Monasca::AlarmDefinition
+    properties:
+      name: CPU utilization beyond 50 percent
+      description: CPU utilization reached beyond 50 percent
+      expression:
+        str_replace:
+          template: avg(cpu.utilization_perc{scale_group=scale_group_id}) > 50 times 3
+          params:
+            scale_group_id: {get_param: "OS::stack_id"}
+      severity: high
+      alarm_actions:
+        - {get_resource: up_notification }
+
+  cpu_alarm_low:
+    type: OS::Monasca::AlarmDefinition
+    properties:
+      name: CPU utilization less than 15 percent
+      description: CPU utilization less than 15 percent
+      expression:
+        str_replace:
+          template: avg(cpu.utilization_perc{scale_group=scale_group_id}) < 15 times 3
+          params:
+            scale_group_id: {get_param: "OS::stack_id"}
+      severity: low
+      alarm_actions:
+        - {get_resource: down_notification}

@@ -1,0 +1,9 @@
+git clone https://git.openstack.org/openstack-dev/devstack
+cd devstack/
+# create local.conf
+./stack.sh
+vi /etc/monasca/monasca-api.conf
+# add monasca-agent to delegate_authorized_roles
+sudo systemctl restart apache2
+/opt/monasca-agent/bin/pip install monasca-agent[libvirt]
+sudo /opt/monasca-agent/bin/monasca-setup -d libvirt
