@@ -1,0 +1,108 @@
++-------------------------+---------------------------------------------------+
+| name                    | dimensions                                        |
++-------------------------+---------------------------------------------------+
+| vm.cpu.utilization_perc | scale_group: fbdd8830-ba09-4b82-8afd-5307e67aefd1 |
+|                         | zone: nova                                        |
+|                         | service: compute                                  |
+|                         | resource_id: 1ba11cac-9b54-458c-aecf-b64e00941018 |
+|                         | tenant_id: d0151bfb7cf2417aa774b0159c785035       |
+|                         | hostname: monasca-heat                            |
+|                         | component: vm                                     |
+| vm.cpu.utilization_perc | scale_group: fbdd8830-ba09-4b82-8afd-5307e67aefd1 |
+|                         | zone: nova                                        |
+|                         | service: compute                                  |
+|                         | resource_id: 2c8765b8-535e-456a-ab2a-77cb8774c1f1 |
+|                         | tenant_id: d0151bfb7cf2417aa774b0159c785035       |
+|                         | hostname: monasca-heat                            |
+|                         | component: vm                                     |
+| vm.cpu.utilization_perc | scale_group: fbdd8830-ba09-4b82-8afd-5307e67aefd1 |
+|                         | zone: nova                                        |
+|                         | service: compute                                  |
+|                         | resource_id: 630718a0-5197-448f-b754-1187d9dc6f5b |
+|                         | tenant_id: d0151bfb7cf2417aa774b0159c785035       |
+|                         | hostname: monasca-heat                            |
+|                         | component: vm                                     |
+| vm.cpu.utilization_perc | scale_group: ad7d4b09-2515-4e65-856f-ec9777d9d2e6 |
+|                         | zone: nova                                        |
+|                         | service: compute                                  |
+|                         | resource_id: 88d0d967-c4d0-4cf8-8cae-abffb8ab3a65 |
+|                         | tenant_id: d0151bfb7cf2417aa774b0159c785035       |
+|                         | hostname: monasca-heat                            |
+|                         | component: vm                                     |
+| vm.cpu.utilization_perc | scale_group: 73355d13-b900-40fa-9cad-53e23057dff5 |
+|                         | zone: nova                                        |
+|                         | service: compute                                  |
+|                         | resource_id: 902dee5d-c595-4100-b6db-7a313987985a |
+|                         | tenant_id: d0151bfb7cf2417aa774b0159c785035       |
+|                         | hostname: monasca-heat                            |
+|                         | component: vm                                     |
+| vm.cpu.utilization_perc | scale_group: ad7d4b09-2515-4e65-856f-ec9777d9d2e6 |
+|                         | zone: nova                                        |
+|                         | service: compute                                  |
+|                         | resource_id: 9195b782-2f5d-4fb3-9b38-c32576f64c8a |
+|                         | tenant_id: d0151bfb7cf2417aa774b0159c785035       |
+|                         | hostname: monasca-heat                            |
+|                         | component: vm                                     |
+| vm.cpu.utilization_perc | scale_group: ad7d4b09-2515-4e65-856f-ec9777d9d2e6 |
+|                         | zone: nova                                        |
+|                         | service: compute                                  |
+|                         | resource_id: 95899cc7-7218-491b-98b1-93628148ddbd |
+|                         | tenant_id: d0151bfb7cf2417aa774b0159c785035       |
+|                         | hostname: monasca-heat                            |
+|                         | component: vm                                     |
+| vm.cpu.utilization_perc | scale_group: 73355d13-b900-40fa-9cad-53e23057dff5 |
+|                         | zone: nova                                        |
+|                         | service: compute                                  |
+|                         | resource_id: 985adf7c-a68c-42e5-b64e-fde6b595a17e |
+|                         | tenant_id: d0151bfb7cf2417aa774b0159c785035       |
+|                         | hostname: monasca-heat                            |
+|                         | component: vm                                     |
+| vm.cpu.utilization_perc | scale_group: 14c824a8-3fa0-4825-9528-314005bd0532 |
+|                         | zone: nova                                        |
+|                         | service: compute                                  |
+|                         | resource_id: 9bbff772-e138-4f32-b8be-90af48820e12 |
+|                         | tenant_id: d0151bfb7cf2417aa774b0159c785035       |
+|                         | hostname: monasca-heat                            |
+|                         | component: vm                                     |
+| vm.cpu.utilization_perc | scale_group: ad7d4b09-2515-4e65-856f-ec9777d9d2e6 |
+|                         | zone: nova                                        |
+|                         | service: compute                                  |
+|                         | resource_id: a37ee6eb-861e-4e61-b1d5-a2e9ec533353 |
+|                         | tenant_id: d0151bfb7cf2417aa774b0159c785035       |
+|                         | hostname: monasca-heat                            |
+|                         | component: vm                                     |
+| vm.cpu.utilization_perc | scale_group: 14c824a8-3fa0-4825-9528-314005bd0532 |
+|                         | zone: nova                                        |
+|                         | service: compute                                  |
+|                         | resource_id: a670efc2-e27a-4667-a584-cc1ababdfafb |
+|                         | tenant_id: d0151bfb7cf2417aa774b0159c785035       |
+|                         | hostname: monasca-heat                            |
+|                         | component: vm                                     |
+| vm.cpu.utilization_perc | scale_group: ad7d4b09-2515-4e65-856f-ec9777d9d2e6 |
+|                         | zone: nova                                        |
+|                         | service: compute                                  |
+|                         | resource_id: ac96e976-7352-4873-884a-2790528e1c29 |
+|                         | tenant_id: d0151bfb7cf2417aa774b0159c785035       |
+|                         | hostname: monasca-heat                            |
+|                         | component: vm                                     |
+| vm.cpu.utilization_perc | scale_group: fbdd8830-ba09-4b82-8afd-5307e67aefd1 |
+|                         | zone: nova                                        |
+|                         | service: compute                                  |
+|                         | resource_id: af2ec45e-ad62-4598-9766-e9ea166e6b7f |
+|                         | tenant_id: d0151bfb7cf2417aa774b0159c785035       |
+|                         | hostname: monasca-heat                            |
+|                         | component: vm                                     |
+| vm.cpu.utilization_perc | service: compute                                  |
+|                         | zone: nova                                        |
+|                         | resource_id: f2237b22-65b3-4742-8fba-edfd00afc1a0 |
+|                         | tenant_id: d0151bfb7cf2417aa774b0159c785035       |
+|                         | hostname: monasca-heat                            |
+|                         | component: vm                                     |
+| vm.cpu.utilization_perc | scale_group: fbdd8830-ba09-4b82-8afd-5307e67aefd1 |
+|                         | zone: nova                                        |
+|                         | service: compute                                  |
+|                         | resource_id: fa2a4ade-de6a-4b7b-8a36-cbd255d9edaa |
+|                         | tenant_id: d0151bfb7cf2417aa774b0159c785035       |
+|                         | hostname: monasca-heat                            |
+|                         | component: vm                                     |
++-------------------------+---------------------------------------------------+
