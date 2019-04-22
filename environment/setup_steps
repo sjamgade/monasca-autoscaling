@@ -1,6 +1,7 @@
+# setup a devstack including stack user, reference https://docs.openstack.org/devstack/latest/
 git clone https://git.openstack.org/openstack-dev/devstack
 cd devstack/
-# create local.conf
+# create local.conf, reference https://github.com/sjamgade/monasca-autoscaling/blob/master/environment/local.conf
 ./stack.sh
 vi /etc/monasca/monasca-api.conf
 # add monasca-agent to delegate_authorized_roles
