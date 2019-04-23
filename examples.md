@@ -79,7 +79,7 @@ nasca-heat:~$ openstack stack resource list -n 7 test --max-width 120
 +-------------------+----------------------+-------------------+-----------------+-------------------+--------------------+
 ```
 
-* monasca notification-list
+* [monasca notification-list](./notification.list)
 * monasca alarm-definition-list
 
 ```bash
@@ -93,7 +93,7 @@ ubuntu@monasca-heat:~$ monasca alarm-definition-list
 +--------------------------------------+--------------------------------------+------------------------------------------------------------------------------------------+----------+-----------------+
 ```
 
-* monasca metric-list
+* [monasca metric-list](./metric.list)
 * monasca measurement-list
 
 ```bash
@@ -129,8 +129,9 @@ ubuntu@monasca-heat:~$ monasca metric-statistics --dimensions scale_group=fbdd88
 +----------------------+---------------------------------------------------+----------------------+--------------+
 ```
 
-* monasca alarm-list
+* [monasca alarm-list](./alarm.list)
 * log in to the instance and generate load
+  - `dd if=/dev/zero of=/dev/null`
 * openstack server list
 * monasca metric-statistics
 * monasca alarm-list
