@@ -5,6 +5,14 @@ Agenda
 * Monasca introduction
 * Share instance IPs
 * Edit and explain Heat template file
+* Set up rc file for DevStack, note use of mini-mon vs admin
+
+```bash
+export OS_PROJECT_NAME=mini-mon
+export OS_PASSWORD=password
+export OS_USERNAME=mini-mon
+```
+
 * openstack orchestration template validate
 
 ```bash
@@ -34,10 +42,11 @@ Parameters:
     Type: String
 ```
 
+* Check flavor, image, and security_group IDs
 * openstack stack create
 
 ```bash
-openstack stack create --wait -t autoscaling.yaml --parameter image=3250d6a6-e372-4e37-8b7f-1b854ecaaa9b --parameter flavor=m1.tiny test
+ubuntu@monasca-heat:~$ openstack stack create --wait -t autoscaling.yaml --parameter image=3250d6a6-e372-4e37-8b7f-1b854ecaaa9b --parameter flavor=m1.tiny test
 ....
 2019-04-11 11:35:44Z [test.scale_down_policy]: CREATE_COMPLETE  state changed
 2019-04-11 11:35:44Z [test.down_notification]: CREATE_IN_PROGRESS  state changed
@@ -55,8 +64,7 @@ openstack stack create --wait -t autoscaling.yaml --parameter image=3250d6a6-e37
 * openstack stack resource list 
 
 ```bash
-ubuntu@monasca-heat:~$ openstack stack resource list -n 7 test
-nasca-heat:~$ openstack stack resource list -n 7 test --max-width 120
+ubuntu@monasca-heat:~$ openstack stack resource list -n 7 test --max-width 120
 +-------------------+----------------------+-------------------+-----------------+-------------------+--------------------+
 | resource_name     | physical_resource_id | resource_type     | resource_status | updated_time      | stack_name         |
 +-------------------+----------------------+-------------------+-----------------+-------------------+--------------------+
@@ -78,6 +86,11 @@ nasca-heat:~$ openstack stack resource list -n 7 test --max-width 120
 |                   | aecf-b64e00941018    |                   |                 | 50Z               | tnwfedco5iyy       |
 +-------------------+----------------------+-------------------+-----------------+-------------------+--------------------+
 ```
+
+* Note the `physical_resource_id` from `group` row, as this will be the
+  `scale_group` dimension used to group measurements
+* Note the `physical_resource_id` from resources of `resource_type`
+  "OS::Nova::Server" is the server id from Nova
 
 * [monasca notification-list](./notification.list)
 * monasca alarm-definition-list
