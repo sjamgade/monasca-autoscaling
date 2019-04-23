@@ -1,6 +1,6 @@
 HEAT
 ----
-[heatarch.png](heatarch.png)
+![heatarch.png](heatarch.png)
 
 Some examples of resource:
 
