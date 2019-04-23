@@ -1,4 +1,3 @@
-
 HEAT
 ----
 [heatarch.png](heatarch.png)
@@ -17,7 +16,7 @@ Some examples of resource:
           - testvm
 
 
-
+---
 ## Some of the resouce groups relevant today for us is:
 - *OS::Heat::AutoScalingGroup*
 - *OS::Heat::ScalingPolicy*
@@ -25,21 +24,16 @@ Some examples of resource:
 - *OS::Monasca::AlarmDefinition*
 
 
-
+---
 ## OS::Heat::AutoScalingGroup
 Properties:
-  - name: Convenient name.
-  - max_size: Maximum size of the group.
-  - min_size: Minimum size of the group.
-  - cooldown: minimum time before *any* autoscaling related operation.
-  - resources: set of resource that should be scaled up or down.
+  - **name:** Convenient name.
+  - **max_size:** Maximum size of the group.
+  - **min_size:** Minimum size of the group.
+  - **cooldown:** minimum time before *any* autoscaling related operation.
+  - **resources:** set of resource that should be scaled up or down.
 
-- Heat provdes this group a box of resources that can be scaled.
-- Scaling up and down is based on Scaling Policy for the group.
-- Should be under a group, because the policy has to back refer to it
-
-
-
+---
 ## OS::Heat::ScalingPolicy
 Properties:
   - **change**: a number that has an effect based on change_type.
@@ -54,7 +48,7 @@ Properties:
 Attributes: (outputs)
   - **alarm_url**: the url which triggers the policy
 
-
+---
 
 ## OS::Monasca::Notification
 Properties:
@@ -70,30 +64,49 @@ Properties:
 Example:
 
 	up_notification:
-    	type: OS::Monasca::Notification
-    	properties:
-      		type: webhook
-      		address: {get_attr: [scale_up_policy, alarm_url]}
+      type: OS::Monasca::Notification
+      properties:
+        type: webhook
+      	address: {get_attr: [scale_up_policy, alarm_url]}
 
-
+---
 
 ## **OS::Monasca::AlarmDefinition**
 Properties:
 - **expression**: Expression of the alarm to evaluate.
-  eg: `avg(cpu.utilization_perc{scale_group=scale_group_id}) > 50 times 3`
+	
+    eg: `avg(cpu.utilization_perc{group_by=something}) > 50 times 3`
     
 Optional Properties
 - **alarm_actions**
-- **ok_actions**:
-- **undetermined_actions**:
+- **ok_actions**
+- **undetermined_actions**
 - **actions_enabled**
-- **match_by**:  
+- **match_by**
 - **severity**
 - description
 - name
+
+Example:
+
+	cpu_alarm_high:
+    type: OS::Monasca::AlarmDefinition
+    properties:
+      name: CPU utilization beyond 50 percent
+      description: CPU utilization reached beyond 50 percent
+      expression:
+        str_replace:
+          template: avg(cpu.utilization_perc{scale_group=scale_group_id}) > 50 times 3
+          params:
+            scale_group_id: {get_param: "OS::stack_id"}
+      severity: high
+      alarm_actions:
+        - {get_resource: up_notification }
+---
     
-## Big Picture:
-- OS::Monasca::AlarmDefinition >>> which has
-- OS::Monasca::Notification   >>> triggers
-- OS::Heat::ScalingPolicy     >>> scales up/down
-- OS::Heat::AutoScalingGroup  >>> resources to scale
+## Big Picture
+
+	AlarmDefinition >>> has
+  		Notification   >>> triggers
+			ScalingPolicy     >>> scales up/down
+				AutoScalingGroup  >>> Resources scaling by heat 
