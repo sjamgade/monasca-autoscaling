@@ -4,14 +4,6 @@ description: >
   Example of using monasca resources for auto-scale testing. In this template,
   sample scale-group is created with given nova instance to auto-scale
   when cpu utilization varies between 15 to 50 percent for 3 times consequently.
-parameters:
-  flavor:
-    type: string
-    description: Flavor for the instances to be created
-    default: m1.nano
-  image:
-    type: string
-    description: Name or ID of the image to use for the instances.
 
 resources:
   group:
@@ -22,15 +14,36 @@ resources:
       max_size: 5
       min_size: 1
       resource:
-        type: OS::Nova::Server
+        type: OS::Heat::Stack
         properties:
-          flavor: { get_param: flavor }
-          image: { get_param: image }
-          metadata: {"scale_group": {get_param: "OS::stack_id"}}
-          networks:
-          - network: private
-          security_groups:
-          - testvm
+          parameters:
+            main_stack: {get_param: "OS::stack_id"}
+          template: |
+            heat_template_version: 2015-10-15
+            parameters:
+              main_stack:
+               type: string
+               default: {get_param: "main_stack"}
+            resources:
+              server_port:
+                type: OS::Neutron::Port
+                properties:
+                  network: private
+                  security_groups:
+                    - testvm
+              server_floating_ip:
+                type: OS::Neutron::FloatingIP
+                properties:
+                  floating_network: public
+                  port_id: { get_resource: server_port }
+              server:
+                type: OS::Nova::Server
+                properties:
+                  flavor: m1.tiny
+                  image: cirros-0.4.0-x86_64-disk
+                  metadata: {"scale_group": {get_param: "main_stack"}}
+                  networks:
+                  - port: { get_resource: server_port }
 
   scale_up_policy:
     type: OS::Heat::ScalingPolicy
