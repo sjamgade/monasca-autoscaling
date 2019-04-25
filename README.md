@@ -1,0 +1,46 @@
+# Auto-Scaling with Heat and Monasca
+## OpenStack Summit Denver 2019
+
+---
+
+* Download your private SSH key (heat_monasca_2019.pem) from
+  [here](https://heat_monasca_2019.pem).
+
+* Change permissions
+
+    ```bash
+    chmod 600 heat_monasca_2019.pem
+    ```
+
+* SSH to your instance and pull the latest changes
+
+    ```bash
+    ssh -i heat_monasca_2019.pem ubuntu@<your_instance_ip>
+    cd monasca-autoscaling
+    git pull
+    ```
+
+### For Windows users
+
+* You can use your favorite SSH client.
+
+* We recommend Git BASH, BASH emulator with SSH client.
+
+* Another good alternative is [cmder](http://cmder.net/).
+
+#### For PuTTY users
+
+* Set the private key for authentication in `Connection -> SSH -> Auth`.
+  Choose [putty_key.ppk](https://chaconpiza.com/putty_key.ppk) as your private key.
+
+* Remember to save the session settings.
+
+## Running the playbook on your own
+
+---
+
+You will require:
+
+* Ubuntu Linux 18.04
+
+* and follow the [setup procedure](/environment/setup_steps)
