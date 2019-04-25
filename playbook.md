@@ -17,28 +17,28 @@ Create a stack
 
 Refer to [examples.md](./examples.md) for detailed commands
 
-There should be two alarms.  
-`monasca alarm-definition-list`
-
-
 Check metadata attribute of server.   
 It should have `scale_group=(id of stack named teststack)`  
 `openstack server show SERVER_ID`
 
+There should be two alarm definitions created.  
+`monasca alarm-definition-list`
 
-Check outputs of these commands
-
-This should what metrics are collected for each VM  
+Check if the metric used in alarm expression is available in the TSDB. Use
+`--help` to look up available options.   
 `monasca metric-list`
 
-Observer the individual measurements corresponding to each metric  
+What are the actual values of the relevant metrics? You can use `--group_by`
+argument.  
 `monasca measurement-list`
 
-Try to do some aggregation and generate some statistics to the metrics.  
+Try to aggregate the measurements and check what are the actual values used for
+alarm evaluation. We filter on `scale_group` and calculate average on three
+consecutive 60s periods. Please use `--merge_metrics` argument.   
 `monasca metric-statistics`
 
-After some time there should some metrics for the vms from stack.
-To get values other thann 0 (zero), create some load on the vms
+After some time there should some metrics for the VMs from stack.
+To get values other than 0 (zero), create some load on the VMs
 
 ```
   # Make sure to type in SERVER_ID on next line
