@@ -4,7 +4,7 @@
 ---
 
 * Download your private SSH key (heat_monasca_2019.pem) from
-  [here](https://heat_monasca_2019.pem).
+  [here](https://drive.google.com/open?id=1ZDFWllrw5nuvUqAy7FktCOGnhrVOih3t).
 
 * Change permissions
 
@@ -31,7 +31,7 @@
 #### For PuTTY users
 
 * Set the private key for authentication in `Connection -> SSH -> Auth`.
-  Choose [putty_key.ppk](https://chaconpiza.com/putty_key.ppk) as your private key.
+  Choose [heat_monasca_2019.ppk](https://drive.google.com/open?id=1uMT6Eg6JBraMwmp95TyIUouPMjxsr7W_) as your private key.
 
 * Remember to save the session settings.
 
