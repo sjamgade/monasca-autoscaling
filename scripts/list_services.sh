@@ -4,7 +4,7 @@ red=`tput setaf 1`
 green=`tput setaf 2`
 reset=`tput sgr0`
 
-for service in `cat ~/scripts/services`
+for service in `cat ~/monasca-autoscaling/scripts/services`
 do
 	active=`sudo systemctl is-active $service`
 	if [ $active = "active" ]; then

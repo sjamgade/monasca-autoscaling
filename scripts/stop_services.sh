@@ -1,8 +1,7 @@
 #!/bin/bash
 
-for service in `tac ~/scripts/services`
+for service in `tac ~/monasca-autoscaling/scripts/services`
 do
 	echo "Stopping $service"
 	sudo systemctl stop $service
 done
-
