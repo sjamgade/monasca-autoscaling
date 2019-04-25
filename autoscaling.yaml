@@ -12,78 +12,53 @@ parameters:
   image:
     type: string
     description: Name or ID of the image to use for the instances.
+    default: cirros-0.4.0-x86_64-disk
 
 resources:
   group:
-    type: OS::Heat::AutoScalingGroup
+    type:  ##FILLHERE##
     properties:
       cooldown: 60
-      desired_capacity: 2
-      max_size: 5
+      desired_capacity: ##FILLHERE##
+      max_size: ##FILLHERE##
       min_size: 1
       resource:
         type: OS::Nova::Server
         properties:
           flavor: { get_param: flavor }
           image: { get_param: image }
-          metadata: {"scale_group": {get_param: "OS::stack_id"}}
+          metadata : {"scale_group": {get_param: "OS::stack_id"}}
           networks:
           - network: private
           security_groups:
           - testvm
 
-  scale_up_policy:
-    type: OS::Heat::ScalingPolicy
-    properties:
-      adjustment_type: change_in_capacity
-      auto_scaling_group_id: { get_resource: group }
-      cooldown: 60
-      scaling_adjustment: 1
-
-  scale_down_policy:
-    type: OS::Heat::ScalingPolicy
-    properties:
-      adjustment_type: change_in_capacity
-      auto_scaling_group_id: { get_resource: group }
-      cooldown: 60
-      scaling_adjustment: -1
-
-  up_notification:
-    type: OS::Monasca::Notification
-    properties:
-      type: webhook
-      address: {get_attr: [scale_up_policy, alarm_url]}
-
-  down_notification:
-    type: OS::Monasca::Notification
-    properties:
-      type: webhook
-      address: {get_attr: [scale_down_policy, alarm_url]}
-
-  cpu_alarm_high:
-    type: OS::Monasca::AlarmDefinition
-    properties:
-      name: CPU utilization beyond 50 percent
-      description: CPU utilization reached beyond 50 percent
-      expression:
-        str_replace:
-          template: avg(cpu.utilization_perc{scale_group=scale_group_id}) > 50 times 3
-          params:
-            scale_group_id: {get_param: "OS::stack_id"}
-      severity: high
-      alarm_actions:
-        - {get_resource: up_notification }
-
-  cpu_alarm_low:
-    type: OS::Monasca::AlarmDefinition
-    properties:
-      name: CPU utilization less than 15 percent
-      description: CPU utilization less than 15 percent
-      expression:
-        str_replace:
-          template: avg(cpu.utilization_perc{scale_group=scale_group_id}) < 15 times 3
-          params:
-            scale_group_id: {get_param: "OS::stack_id"}
-      severity: low
-      alarm_actions:
-        - {get_resource: down_notification}
+#  scale_up_policy:
+#
+#  scale_down_policy:
+#
+#  up_notification:
+#    type:
+#    properties:
+#      type:
+#      address: {get_attr: [scale_up_policy, alarm_url]}
+#
+#  down_notification:
+#    type:
+#    properties:
+#      type:
+#      address: {get_attr: [scale_down_policy, alarm_url]}
+#
+#  cpu_alarm_high:
+#     ##FILLHERE##
+#        str_replace:
+#          template: avg(cpu.utilization_perc{scale_group=##FILLHERE##}) > 50 times 3
+#          params:
+#            ##FILLHERE##: {get_param: "OS::stack_id"}
+#
+#  cpu_alarm_low:
+#     ##FILLHERE##
+#        str_replace:
+#          template: avg(cpu.utilization_perc{scale_group=##FILLHERE##}) < 15 times 3
+#          params:
+#            ##FILLHERE##: {get_param: "OS::stack_id"}
