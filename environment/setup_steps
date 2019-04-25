@@ -9,7 +9,6 @@ sudo systemctl restart apache2
 /opt/monasca-agent/bin/pip install monasca-agent[libvirt]
 sudo /opt/monasca-agent/bin/monasca-setup -d libvirt
 
-source ~/devstack/openrc
 openstack security group delete testvm || :
 openstack security group create --description testvm testvm
 openstack security group rule create --protocol icmp testvm
