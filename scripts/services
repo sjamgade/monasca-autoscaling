@@ -1,0 +1,11 @@
+zookeeper
+devstack@monasca-storm-nimbus
+devstack@monasca-storm-supervisor
+kafka
+influxdb
+monasca-thresh
+devstack@monasca-notification
+devstack@monasca-persister
+devstack@monasca-api
+monasca-agent.target
+grafana-server
