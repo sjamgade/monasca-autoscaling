@@ -33,6 +33,27 @@ Properties:
   - **cooldown:** minimum time before *any* autoscaling related operation.
   - **resources:** set of resource that should be scaled up or down.
 
+Example:
+
+    group:
+      type: OS::Heat::AutoScalingGroup
+      properties:
+        ... specify propoerties from above ..
+        resource:
+          type: OS::Nova::Server
+          properties:
+            flavor: { get_param: flavor }
+            image: { get_param: image }
+            # pass scale_group as metadata,
+            # monasca will store this as vm metadata and
+            # later can be used to group vms together from
+            # same stack
+            metadata: {"scale_group": {get_param: "OS::stack_id"}}
+            networks:
+            - network: private
+            security_groups:
+            - testvm
+
 ---
 ## OS::Heat::ScalingPolicy
 Properties:
@@ -47,6 +68,16 @@ Properties:
 
 Attributes: (outputs)
   - **alarm_url**: the url which triggers the policy
+
+Example:
+
+    policy_for_autoscaling_group:
+      type: OS::Heat::ScalingPolicy
+      properties:
+        adjustment_type: change_in_capacity
+        auto_scaling_group_id: { get_resource: group }
+        cooldown: 60
+        scaling_adjustment: -1
 
 ---
 
@@ -63,11 +94,11 @@ Properties:
      
 Example:
 
-	up_notification:
+	notification_object:
       type: OS::Monasca::Notification
       properties:
-        type: webhook
-      	address: {get_attr: [scale_up_policy, alarm_url]}
+        type: webhook  # we want the notification to trigger the policy via a url
+        address: {get_attr: [some_policy, alarm_url]} # this get the alarm_url to trigger the policy
 
 ---
 
@@ -89,19 +120,18 @@ Optional Properties
 
 Example:
 
-	cpu_alarm_high:
+	fire_alarm:
     type: OS::Monasca::AlarmDefinition
     properties:
-      name: CPU utilization beyond 50 percent
-      description: CPU utilization reached beyond 50 percent
+      ....
       expression:
         str_replace:
-          template: avg(cpu.utilization_perc{scale_group=scale_group_id}) > 50 times 3
+          template: avg(cpu.utilization_perc{scale_group=group_by}) > 50 times 3
           params:
-            scale_group_id: {get_param: "OS::stack_id"}
+            group_by: {get_param: "OS::stack_id"} # use stack_id to group instances
       severity: high
       alarm_actions:
-        - {get_resource: up_notification }
+        - {get_resource: notification_object_from_the_stack }
 ---
     
 ## Big Picture
