@@ -43,7 +43,7 @@ To get values other than 0 (zero), create some load on the VMs
 ```
   # Make sure to type in SERVER_ID on next line
 
-  export FLOATING_IP=openstack floating ip create public  --port=$(openstack port list --device-id=$(openstack server show -f value -c id SERVER_ID ) -f value -c id) -f value -c floating_ip_address
+  export FLOATING_IP=`openstack floating ip create public -f value -c floating_ip_address --port=$(openstack port list -f value -c id --device-id=$(openstack server show -f value -c id SERVER_ID ))`
   ssh cirros@$FLOATING_IP "dd if=/dev/zero of=/dev/null &"
 ```
 
@@ -68,7 +68,7 @@ Create some load on vm and watch for notifications
 ```
   # Make sure to type in SERVER_ID on next line
 
-  export FLOATING_IP=openstack floating ip create public  --port=$(openstack port list --device-id=$(openstack server show -f value -c id SERVER_ID ) -f value -c id) -f value -c floating_ip_address
+  export FLOATING_IP=`openstack floating ip create public -f value -c floating_ip_address --port=$(openstack port list -f value -c id --device-id=$(openstack server show -f value -c id SERVER_ID ))`
   ssh cirros@$FLOATING_IP "dd if=/dev/zero of=/dev/null &"
 ```
 
@@ -105,7 +105,7 @@ Create some load on vm and watch for notifications
 ```
   # Make sure to type in SERVER_ID on next line
 
-  export FLOATING_IP=openstack floating ip create public  --port=$(openstack port list --device-id=$(openstack server show -f value -c id SERVER_ID ) -f value -c id) -f value -c floating_ip_address
+  export FLOATING_IP=`openstack floating ip create public -f value -c floating_ip_address --port=$(openstack port list -f value -c id --device-id=$(openstack server show -f value -c id SERVER_ID ))`
   ssh cirros@$FLOATING_IP "dd if=/dev/zero of=/dev/null &"
 ```
 
@@ -121,9 +121,9 @@ A new vm should be created
 
 ssh to different machines toggle load generating process:  
 
-To stop:   `pkill dd`
+To stop:   `pidof dd | xargs kill -9`
 
-To start:  `dd if=/dev/zero of=/dev/null`
+To start:  `dd if=/dev/zero of=/dev/null &`
 
 **CHECK**:
 
