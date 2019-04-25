@@ -8,6 +8,7 @@ vi /etc/monasca/monasca-api.conf
 sudo systemctl restart apache2
 /opt/monasca-agent/bin/pip install monasca-agent[libvirt]
 sudo /opt/monasca-agent/bin/monasca-setup -d libvirt
+# set `vm_probation: 0` in /etc/monasca/agent/conf.d/libvirt.yaml
 
 openstack security group delete testvm || :
 openstack security group create --description testvm testvm
