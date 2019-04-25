@@ -19,11 +19,10 @@
     cd monasca-autoscaling
     git pull
     ```
-* Restart Monasca services
+* Start Monasca services
 
     ```
     cd scripts
-    ./stop_services.sh
     ./start_services.sh
     ```
 

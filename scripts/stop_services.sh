@@ -3,5 +3,5 @@
 for service in `tac ~/monasca-autoscaling/scripts/services`
 do
 	echo "Stopping $service"
-	sudo systemctl stop $service
+	sudo systemctl disable $service
 done
