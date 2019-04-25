@@ -1,9 +1,9 @@
 Playbook
 --------
 
-## Create a Stack and AlarmsDefition
+## 1. Create a Stack and AlarmsDefition
 
-DO:
+**DO**:
 
 Fill out resource block for **cpu_alarm_high**, **cpu_alarm_low**, **group**:
   - **OS::Heat::AutoScalingGroup**
@@ -13,7 +13,7 @@ Fill out resource block for **cpu_alarm_high**, **cpu_alarm_low**, **group**:
 Create a stack  
 `openstack stack create --wait -t autoscaling.yaml test`
 
-CHECK:
+**CHECK**:
 
 Refer to [examples.md](./examples.md) for detailed commands
 
@@ -47,9 +47,9 @@ To get values other thann 0 (zero), create some load on the vms
   ssh cirros@$FLOATING_IP "dd if=/dev/zero of=/dev/null &"
 ```
 
-## Add Notification for alarm definition
+## 2. Add Notification for alarm definition
 
-DO: 
+**DO**:
 
 Delete previous stack  
 `openstack stack delete --wait --yes teststack`
@@ -62,7 +62,7 @@ Create a stack
 `openstack stack create --wait -t autoscaling.yaml teststack`
 
 
-CHECK:
+**CHECK**:
 
 Create some load on vm and watch for notifications
 ```
@@ -85,9 +85,9 @@ But after ~3 mins the alarm should be in ALARM state
 And there should be alarm corresponding to those definitions  
 `monasca alarm-list`
 
-## Add scaling policies
+## 3. Add scaling policies
 
-DO:
+**DO**:
 
 Delete previous stack  
 `openstack stack delete --wait --yes teststack`
@@ -99,7 +99,7 @@ Delete previous stack
 Create a stack  
 `openstack stack create --wait -t autoscaling.yaml test`
 
-CHECK
+**CHECK**
 
 Create some load on vm and watch for notifications
 ```
@@ -115,9 +115,9 @@ As soon as there are alarms
 A new vm should be created  
 `openstack server list`
 
-## Experiment with scale-up and scale-down
+## 4. Experiment with scale-up and scale-down
 
-DO:
+**DO**:
 
 ssh to different machines toggle load generating process:  
 
@@ -125,7 +125,7 @@ To stop:   `pkill dd`
 
 To start:  `dd if=/dev/zero of=/dev/null`
 
-CHECK:
+**CHECK**:
 
 Corresponding scale up and scale down in number of VMs  
 `openstack server list`
