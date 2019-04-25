@@ -47,7 +47,7 @@ To get values other than 0 (zero), create some load on the VMs
   ssh cirros@$FLOATING_IP "dd if=/dev/zero of=/dev/null &"
 ```
 
-## 2. Add Notification for alarm definition
+## 2. Add Notifications for alarms
 
 **DO**:
 
@@ -75,15 +75,25 @@ Create some load on vm and watch for notifications
 Refer to [examples.md](./examples.md) for detailed commands
 
 
-This is the list of webhooks which monasca will call whenever corresponding alarms have been fired  
+This is the list of webhook notfications which Monasca will call whenever
+corresponding alarms have been fired  
 `monasca notification-list`
 
-Initially no notfications as the alarm have not yet been in **ALARM** state.  
-But after ~3 mins the alarm should be in ALARM state  
+These notification methods should be assigned to alarm definitions.  
 `monasca alarm-definition-list`
 
-And there should be alarm corresponding to those definitions  
+You can use the commands from the previous part to observe the increased CPU
+utilization.
+
+Initially no notifications as the alarm have not yet been in **ALARM** state.  
+But after ~3 mins the alarm should transition into ALARM state.  
+
+Check the state of the alarms generated from alarm definitions and collected
+metrics.   
 `monasca alarm-list`
+
+Triggered notifications have no effect in Heat until now because we haven't
+configured scaling policies.
 
 ## 3. Add scaling policies
 
@@ -109,8 +119,12 @@ Create some load on vm and watch for notifications
   ssh cirros@$FLOATING_IP "dd if=/dev/zero of=/dev/null &"
 ```
 
-As soon as there are alarms  
+Observe increased load using the commands from the first part.
+
+As soon as the threshold is exceeded alarm transitions to ALARM state and
+notification is triggered. Check the state of the alarm.  
 `monasca alarm-list`  
+`monasca alarm-show`
 
 A new vm should be created  
 `openstack server list`
@@ -126,6 +140,11 @@ To stop:   `pidof dd | xargs kill -9`
 To start:  `dd if=/dev/zero of=/dev/null &`
 
 **CHECK**:
+
+Observe the changing alarm states with the commands from the previous section.
+
+Check how the *cpu_alarm_high* and *cpu_alarm_low* alarm states changed in time.  
+`monasca alarm-history`
 
 Corresponding scale up and scale down in number of VMs  
 `openstack server list`
