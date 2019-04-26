@@ -41,9 +41,13 @@
 
 * Remember to save the session settings.
 
-## Running the playbook on your own
+## Agenda
 
----
+* [Monasca Introduction](monasca_intro.md)
+* [Heat Introduction](heat_intro.md)
+* [Assignments Playbook](playbook.md)
+
+## Running the playbook on your own
 
 You will require:
 
