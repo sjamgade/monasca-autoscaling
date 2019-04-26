@@ -125,25 +125,25 @@ GET, PUT, PATCH, DELETE /v2.0/alarms/{alarm-id}
 
 Query Parameters
 
-*        `alarm_definition_id` (string, optional)  
+* `alarm_definition_id` (string, optional)  
 Alarm definition ID to filter by.
 
-*        `metric_name` (string(255), optional)  
+* `metric_name` (string(255), optional)  
 Name of metric to filter by.
 
-*        `metric_dimensions` ({string(255): string(255)}, optional)  
+* `metric_dimensions` ({string(255): string(255)}, optional)  
 Dimensions of metrics to filter by specified as a comma separated array of (key, value) pairs as key1:value1,key1:value1, ...
 
-*        `state` (string, optional)  
+* `state` (string, optional)  
 State of alarm to filter by, either OK, ALARM or UNDETERMINED.
 
-*        `state_updated_start_time` (string, optional)  
+* `state_updated_start_time` (string, optional)  
 The start time in ISO 8601 combined date and time format in UTC.
 
-*        `sort-by`  
+* `sort-by`  
 Fields to sort by
 
-*        `offset`  
+* `offset`  
 Offset for paging
 * `limit`  
 Limit the size of result set
