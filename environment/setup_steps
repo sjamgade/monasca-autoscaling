@@ -5,6 +5,7 @@ cd devstack/
 # create local.conf, reference https://github.com/sjamgade/monasca-autoscaling/blob/master/environment/local.conf
 ./stack.sh
 vi /etc/monasca/monasca-api.conf
+# or vi /etc/monasca-api/api-config.conf 
 # add monasca-agent to delegate_authorized_roles
 /opt/monasca-agent/bin/pip install monasca-agent[libvirt]
 sudo /opt/monasca-agent/bin/monasca-setup -d libvirt

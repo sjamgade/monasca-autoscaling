@@ -54,3 +54,35 @@ You will require:
 * Ubuntu Linux 18.04
 
 * and follow the [setup procedure](/environment/setup_steps)
+
+
+## Troubleshooting 
+
+* In case services reporting AMQP errors
+
+CHECK: `sudo rabbitmqctl list_users`
+
+if there is `stackrabbit` user then:
+
+```
+sudo rabbitmqctl add_user stackrabbit secretrabbit
+sudo rabbitmqctl set_permissions stackrabbit '.*' '.*' '.*'
+sudo rabbitmqctl list_vhosts
+sudo rabbitmqctl add_vhost nova_cell1
+sudo rabbitmqctl set_permissions -p nova_cell1 stackrabbit '.*' '.*' '.*'
+
+```
+
+
+* Check if all services are running fine
+
+`systemctl list-units | grep devstack`
+
+All services should be in 'running' state.
+
+
+* Network connectivity issues within the host:
+
+CHECK: `ip netns list`
+
+there should be two qdhcp namespaces
