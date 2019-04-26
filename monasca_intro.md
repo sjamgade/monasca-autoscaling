@@ -78,12 +78,12 @@ alarm state transitions occur.
 
 Supported notification methods (plugins) are:
 
-*        Email
+* Email
 * PagerDuty
-*        Webhook
-*        Jira
-*        HipChat
-*        Slack
+* Webhook
+* Jira
+* HipChat
+* Slack
 
 ## Alarm Definitions
 
