@@ -58,7 +58,7 @@ You will require:
 
 ## Troubleshooting 
 
-* In case services reporting AMQP errors
+### In case services reporting AMQP errors
 
 CHECK: `sudo rabbitmqctl list_users`
 
@@ -74,14 +74,14 @@ sudo rabbitmqctl set_permissions -p nova_cell1 stackrabbit '.*' '.*' '.*'
 ```
 
 
-* Check if all services are running fine
+### Check if all services are running fine
 
 `systemctl list-units | grep devstack`
 
 All services should be in 'running' state.
 
 
-* Network connectivity issues within the host:
+### Network connectivity issues within the host:
 
 CHECK: `ip netns list`
 
