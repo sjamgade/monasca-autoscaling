@@ -60,8 +60,8 @@ Properties:
   - **change**: a number that has an effect based on change_type.
   - **change_type:** (meaning of "change")
   	- "change_in_capacity"
-    - "percentage_change_in_capacity", 
-    - "exact_capacity" 
+    - "percentage_change_in_capacity",
+    - "exact_capacity"
   - **cooldown:** minimum amount of time (in seconds) between allowable executions of this policy.
   - **group_id:** ID of the group that this policy will affect
   - **name:** Convenient name
@@ -83,7 +83,7 @@ Example:
 
 ## OS::Monasca::Notification
 Properties:
-  - **address**: Address of the notification. 
+  - **address**: Address of the notification.
         - email address
         - url
         - service key based on notification type.
@@ -91,7 +91,7 @@ Properties:
         - email
         - webhook
         - pagerduty
-     
+
 Example:
 
 	notification_object:
@@ -105,9 +105,9 @@ Example:
 ## **OS::Monasca::AlarmDefinition**
 Properties:
 - **expression**: Expression of the alarm to evaluate.
-	
+
     eg: `avg(cpu.utilization_perc{group_by=something}) > 50 times 3`
-    
+
 Optional Properties
 - **alarm_actions**
 - **ok_actions**
@@ -115,8 +115,8 @@ Optional Properties
 - **actions_enabled**
 - **match_by**
 - **severity**
-- description
-- name
+- **description**
+- **name**
 
 Example:
 
@@ -133,10 +133,10 @@ Example:
       alarm_actions:
         - {get_resource: notification_object_from_the_stack }
 ---
-    
+
 ## Big Picture
 
 	AlarmDefinition >>> has
   		Notification   >>> triggers
 			ScalingPolicy     >>> scales up/down
-				AutoScalingGroup  >>> Resources scaling by heat 
+				AutoScalingGroup  >>> Resources scaling by heat
