@@ -43,7 +43,7 @@ To get values other than 0 (zero), create some load on the VMs
 ```
 # Make sure to type in SERVER_IP on next line
 
-ip netns exec dhcp-TODO ssh cirros@$SERVER_IP "dd if=/dev/zero of=/dev/null &"
+ip netns exec qdhcp-13f0b5d1-bf1d-4edc-a40d-7c569997ca3e ssh cirros@$SERVER_IP "dd if=/dev/zero of=/dev/null &"
 ```
 
 ## 2. Add Notifications for alarms
@@ -67,7 +67,7 @@ Create some load on vm and watch for notifications
 ```
 # Make sure to type in SERVER_IP on next line
 
-ip netns exec dhcp-TODO ssh cirros@$SERVER_IP "dd if=/dev/zero of=/dev/null &"
+ip netns exec qdhcp-13f0b5d1-bf1d-4edc-a40d-7c569997ca3e ssh cirros@$SERVER_IP "dd if=/dev/zero of=/dev/null &"
 ```
 
 Refer to [examples.md](./examples.md) for detailed commands
@@ -113,7 +113,7 @@ Create some load on vm and watch for notifications
 ```
 # Make sure to type in SERVER_IP on next line
 
-ip netns exec dhcp-TODO ssh cirros@$SERVER_IP "dd if=/dev/zero of=/dev/null &"
+ip netns exec qdhcp-13f0b5d1-bf1d-4edc-a40d-7c569997ca3e ssh cirros@$SERVER_IP "dd if=/dev/zero of=/dev/null &"
 ```
 
 Observe increased load using the commands from the first part.
