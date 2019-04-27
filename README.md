@@ -101,13 +101,13 @@ CHECK: `openstack server create --debug --image cirros-0.4.0-x86_64-disk --netwo
 
 FAILURE: "message": "Host 'YOUR-HOSTNAME' is not mapped to any cell", "code": 400
 
-`
+```
 nova-manage cell_v2 delete_host --cell_uuid b603d831-06d9-4a00-ba5d-0b2a55da6920 --host rocky-16
 /home/ubuntu/devstack/tools/discover_hosts.sh
 sudo sed -i "s/rocky-16/$HOSTNAME/g"  /etc/monasca/agent/agent.yaml /etc/monasca/agent/conf.d/host_alive.yaml
 ~/monasca-autoscaling/scripts/stop_services.sh
 ~/monasca-autoscaling/scripts/start_services.sh
-`
+```
 
 
 ### Network connectivity issues within the host:
