@@ -18,7 +18,7 @@ Create a stack
 Refer to [examples.md](./examples.md) for detailed commands
 
 Check metadata attribute of server.   
-It should have `scale_group=(id of stack named teststack)`  
+It should have `scale_group=(id of stack named test)`
 `openstack server show SERVER_ID`
 
 There should be two alarm definitions created.  
@@ -51,14 +51,14 @@ ip netns exec dhcp-TODO ssh cirros@$SERVER_IP "dd if=/dev/zero of=/dev/null &"
 **DO**:
 
 Delete previous stack  
-`openstack stack delete --wait --yes teststack`
+`openstack stack delete --wait --yes test`
 
 Fill out  *up_notification* and *down_notification*:
   - **OS::Monasca::Notification**  
    Add properties as defined in [heatintro.md](./heatintro.md)
 
 Create a stack  
-`openstack stack create --wait -t autoscaling.yaml teststack`
+`openstack stack create --wait -t autoscaling.yaml test`
 
 
 **CHECK**:
@@ -98,9 +98,9 @@ configured scaling policies.
 **DO**:
 
 Delete previous stack  
-`openstack stack delete --wait --yes teststack`
+`openstack stack delete --wait --yes test`
 
-- Fill out  *scale_up_policy* and *scale_up_policy*:
+- Fill out  *scale_up_policy* and *scale_down_policy*:
   - **OS::Heat::ScalingPolicy**  
   Add properties as defined in [heatintro.md](./heatintro.md)
 
