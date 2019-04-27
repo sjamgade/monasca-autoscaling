@@ -2,11 +2,20 @@
 git clone https://git.openstack.org/openstack-dev/devstack
 git clone https://github.com/sjamgade/monasca-autoscaling.git
 cd devstack/
-# create local.conf, reference https://github.com/sjamgade/monasca-autoscaling/blob/master/environment/local.conf
+wget https://raw.githubusercontent.com/sjamgade/monasca-autoscaling/master/environment/local.conf
 ./stack.sh
-vi /etc/monasca/monasca-api.conf
+
+# vi /etc/monasca/monasca-api.conf
 # or vi /etc/monasca-api/api-config.conf 
 # add monasca-agent to delegate_authorized_roles
+sed  -i 's/\(^delegate_authorized_roles.*$\)/\1, monasca-agent/g' /etc/monasca-api/monasca-api.conf
+sed  -i 's/\(^delegate_authorized_roles.*$\)/\1, monasca-agent/g' /etc/monasca-api/api-config.conf
+
+pushd ~
+git clone https://github.com/sjamgade/monasca-autoscaling
+cd monasca-autoscaling/scripts
+./start_service.sh
+sudo systemctl restart apache2
 /opt/monasca-agent/bin/pip install monasca-agent[libvirt]
 sudo /opt/monasca-agent/bin/monasca-setup -d libvirt
 # set `vm_probation: 0` in /etc/monasca/agent/conf.d/libvirt.yaml
