@@ -151,3 +151,5 @@ References
 * Heat autoscaling [template](https://github.com/openstack/heat-templates/blob/master/hot/monasca/autoscaling.yaml)
 * Monasca [libvirt plugin documentation](https://github.com/openstack/monasca-agent/blob/master/docs/Libvirt.md)
 * Monasca API [reference](https://github.com/openstack/monasca-api/blob/master/docs/monasca-api-spec.md)
+* Monasca CLI [code reference](https://github.com/openstack/python-monascaclient/tree/master/doc/source/cli)
+  and [docs](https://docs.openstack.org/python-monascaclient/latest/)
