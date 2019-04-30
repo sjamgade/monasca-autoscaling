@@ -12,11 +12,17 @@
     chmod 600 heat_monasca_2019.pem
     ```
 
-* SSH to your instance and pull the latest changes
+* SSH to your instance
 
     ```bash
     ssh -i heat_monasca_2019.pem ubuntu@<your_instance_ip>
+    ```
+
+* Pull the latest changes
+
+    ```bash
     cd monasca-autoscaling
+    git checkout -- .    # dump any local changes
     git pull
     ```
 * Start Monasca services
