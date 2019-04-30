@@ -22,7 +22,7 @@
 
     ```bash
     cd monasca-autoscaling
-    git checkout -- .    # dump any local changes
+    git checkout -- .    # dont miss the . (dot) at end
     git pull
     ```
 * Start Monasca services
