@@ -42,6 +42,7 @@ To get values other than 0 (zero), create some load on the VMs
 
 ```
 # Make sure to type in SERVER_IP on next line
+# password : gocubsgo
 
 ip netns exec qdhcp-13f0b5d1-bf1d-4edc-a40d-7c569997ca3e ssh cirros@$SERVER_IP "dd if=/dev/zero of=/dev/null &"
 ```
@@ -66,6 +67,7 @@ Create a stack
 Create some load on vm and watch for notifications
 ```
 # Make sure to type in SERVER_IP on next line
+# password : gocubsgo
 
 ip netns exec qdhcp-13f0b5d1-bf1d-4edc-a40d-7c569997ca3e ssh cirros@$SERVER_IP "dd if=/dev/zero of=/dev/null &"
 ```
@@ -112,6 +114,7 @@ Create a stack
 Create some load on vm and watch for notifications
 ```
 # Make sure to type in SERVER_IP on next line
+# password : gocubsgo
 
 ip netns exec qdhcp-13f0b5d1-bf1d-4edc-a40d-7c569997ca3e ssh cirros@$SERVER_IP "dd if=/dev/zero of=/dev/null &"
 ```
