@@ -142,3 +142,8 @@ Example:
   		Notification   >>> triggers
 			ScalingPolicy     >>> scales up/down
 				AutoScalingGroup  >>> Resources scaling by heat
+
+
+
+## References
+- [Heat Resource Types](https://docs.openstack.org/heat/rocky/template_guide/openstack.html)
