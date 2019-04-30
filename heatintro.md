@@ -17,7 +17,7 @@ Some examples of resource:
 
 
 ---
-## Some of the resouce groups relevant today for us is:
+## Some of the resouce groups relevant today for us are:
 - *OS::Heat::AutoScalingGroup*
 - *OS::Heat::ScalingPolicy*
 - *OS::Monasca::Notification*
@@ -58,6 +58,8 @@ Example:
 ## OS::Heat::ScalingPolicy
 Properties:
   - **change**: a number that has an effect based on change_type.
+  - auto_scaling_group_id:
+  - scaling_adjustment:
   - **change_type:** (meaning of "change")
   	- "change_in_capacity"
     - "percentage_change_in_capacity",
