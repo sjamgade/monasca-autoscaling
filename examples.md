@@ -1,17 +1,7 @@
-Agenda
-------
+Commands and Sample Outputs
+---------------------------
 
-* Heat introduction
-* Monasca introduction
-* Share instance IPs
-* Edit and explain Heat template file
-* Set up rc file for DevStack, note use of mini-mon vs admin
-
-```bash
-export OS_PROJECT_NAME=mini-mon
-export OS_PASSWORD=password
-export OS_USERNAME=mini-mon
-```
+These command can help you view your deployment in detail
 
 * openstack orchestration template validate
 
