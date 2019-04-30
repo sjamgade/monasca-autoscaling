@@ -30,6 +30,7 @@ Properties:
   - **name:** Convenient name.
   - **max_size:** Maximum size of the group.
   - **min_size:** Minimum size of the group.
+  - **desired_capacity:** Initial Capacity of the group.
   - **cooldown:** minimum time before *any* autoscaling related operation.
   - **resources:** set of resource that should be scaled up or down.
 
@@ -58,14 +59,13 @@ Example:
 ## OS::Heat::ScalingPolicy
 Properties:
   - **change**: a number that has an effect based on change_type.
-  - auto_scaling_group_id:
-  - scaling_adjustment:
+  - **auto_scaling_group_id**: the AutoscalingGroup id for this policy.
+  - **scaling_adjustment**: change in number (eg: 1,-1,5,-6).
   - **change_type:** (meaning of "change")
   	- "change_in_capacity"
     - "percentage_change_in_capacity",
     - "exact_capacity"
   - **cooldown:** minimum amount of time (in seconds) between allowable executions of this policy.
-  - **group_id:** ID of the group that this policy will affect
   - **name:** Convenient name
 
 Attributes: (outputs)
